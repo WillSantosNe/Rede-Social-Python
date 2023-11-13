@@ -11,7 +11,7 @@ from tumbrl import database
 import os
 from werkzeug.utils import secure_filename
 
-# Vai ser o login do cara
+# A primeira página será a pagina de login caso ele não esteja logado ainda
 @app.route('/login', methods=['POST', 'GET'])
 @app.route('/', methods=['POST', 'GET'])
 def login():
@@ -22,6 +22,7 @@ def login():
     if _formLogin.validate_on_submit():
         userToLogin = User.query.filter_by(email=_formLogin.email.data).first()
         if userToLogin and bcrypt.check_password_hash(userToLogin.password, _formLogin.password.data):
+            # Verificando se está correto o login ou se ele já está logado
             login_user(userToLogin, remember=_formLogin.remember.data)
             return redirect(url_for('home', user_id=current_user.id))
 

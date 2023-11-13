@@ -9,6 +9,7 @@
                 <a href="{{ url_for('home') }}" class="btn btn-outline-primary">Voltar para o Feed!</a>
             </div>
 
+            <!-- Formulário para realizar postagem -->
             {% if form %}
             <div class="card mb-5">
                 <div class="card-header text-white bg-light border-0">
@@ -36,6 +37,8 @@
             </div>
             {% endif %}
 
+
+            <!-- Irá mostrar as postagens do usuário -->
             {% for post in user.posts %}
             <div class="card mb-4 shadow-sm">
                 <div class="card-body bg-light">
@@ -49,6 +52,7 @@
                 </div>
             </div>
             {% else %}
+            <!-- Se não houver postagens, mostra mensagem especificando. -->
             <p class="text-muted text-center">Não há publicações para mostrar.</p>
             {% endfor %}
         </div>
